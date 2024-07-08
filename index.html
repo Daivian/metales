@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metal vs Concreto</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+  <div class="titulo">
+    <h1>¿Qué TEAM eres?</h1>
+  </div>
+  <div class="opciones">
+    <a href="https://energyeducation.ca/wiki2develop/images/thumb/0/0b/Metalbuildingframe.JPG/424px-Metalbuildingframe.JPG" target="_blank">
+      <div class="opcion izquierda">
+        <h3>METAL</h3>
+      </div>
+    </a>
+    <button class="btn-inicio" onclick="mostrarCalculadora()">Iniciar Calculadora</button>
+    <a href="https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/agenda-predimensionamiento-oct2020.jpg?itok=8OAcNoPO" target="_blank">
+      <div class="opcion derecha">
+        <h3>CONCRETO</h3>
+      </div>
+    </a>
+  </div>
+  <div class="container" id="calculadoraContainer" style="display:none;"> 
+    <div class="contenido">
+      <h1>Metal vs Concreto</h1>
+      <h2>En esta calculadora se analizará mediante criterios propios, qué tan bueno es uno sobre otro.</h2>
+      <div class="factibilidad-box">
+          <div class="factibilidad">
+              Factibilidad = 
+              <input type="number" id="factor-resistencia" value="25" oninput="actualizarSuma()" min="0" style="width: 30px;"> % (resistencia de materiales) -
+              <input type="number" id="factor-costo" value="25" oninput="actualizarSuma()" min="0" style="width: 30px;"> % (costo de materiales) -
+              <input type="number" id="factor-tiempo" value="25" oninput="actualizarSuma()" min="0" style="width: 30px;"> % (tiempo de construcción) +
+              <input type="number" id="factor-vida" value="25" oninput="actualizarSuma()" min="0" style="width: 30px;"> % (vida útil)
+          </div>
+          <div id="suma-factores">Suma actual: 100%</div>
+          <p>La suma de los factores debe ser igual a 100%.</p>
+      </div>
+      <div class="calculadoras">
+          <div class="calculadora-metal">
+              <h3>Calculadora de Factibilidad de Metal</h3>
+              <img src="https://energyeducation.ca/wiki2develop/images/thumb/0/0b/Metalbuildingframe.JPG/424px-Metalbuildingframe.JPG" alt="Estructura Metálica">
+              <label>Resistencia de materiales (kg/cm<sup>2</sup>): <input type="number" id="metal-resistencia" min="0"></label>
+              <label>Costo de materiales (S/.): <input type="number" id="metal-costo" min="0"></label>
+              <label>Tiempo de construcción (días): <input type="number" id="metal-tiempo" min="0"></label>
+              <label>Vida útil (años): <input type="number" id="metal-vida" value="100" min="0"></label>
+          </div>
+          <div class="calculadora-concreto">
+              <h3>Calculadora de Factibilidad de Concreto</h3>
+              <img src="https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/agenda-predimensionamiento-oct2020.jpg?itok=8OAcNoPO" alt="Estructura de Concreto">
+              <label>Resistencia de materiales (kg/cm<sup>2</sup>): <input type="number" id="concreto-resistencia" min="0"></label>
+              <label>Costo de materiales (S/.): <input type="number" id="concreto-costo" min="0"></label>
+              <label>Tiempo de construcción (días): <input type="number" id="concreto-tiempo" min="0"></label>
+              <label>Vida útil (años): <input type="number" id="concreto-vida" value="50" min="0"></label>
+          </div>
+      </div>
+      <button class="btn-calcular" onclick="calcularFactibilidad()">Calcular Factibilidad</button>
+      <div id="resultado"></div>
+      <div class="graficos">
+        <div id="chartContainer" style="height: 370px; width: 60%;"></div>
+        <div class="interpretacion">
+            <h3>Interpretación Gráfica:</h3>
+            <ul>
+                <li> En caso ambas barras apunten para arriba, la más factible será la de mayor tamaño.</li>
+                <li> En caso ambas barras apunten para abajo, la más factible será la de menor tamaño.</li>
+                <li> En caso apunten en direcciones contrarias, la más factible será la que apunte arriba.</li>
+            </ul>
+        </div>
+      </div>
+      <button class="btn-reset" onclick="resetDatos()">Reset</button>
+      <button class="btn-descargar" onclick="descargarDatos()">Descargar</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
